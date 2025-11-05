@@ -1,128 +1,102 @@
-<!doctype html>
-<html lang="vi">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Control Hub — FF Tools</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<title>PANEL AIMLOCK</title>
+<style>
+body {
+    background: #0d0d0d;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.box {
+    background: rgba(255,255,255,0.1);
+    margin: 12px;
+    padding: 14px;
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 28px;
+}
+.switch input {display:none;}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #666;
+  transition: .3s;
+  border-radius: 30px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50px;
+  transition: .3s;
+}
+input:checked + .slider {
+  background-color: #ff0057;
+}
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+</style>
 </head>
+
 <body>
-  <!-- Canvas nền 3D/particle -->
-  <canvas id="bg"></canvas>
 
-  <main class="panel">
-    <header class="panel-header">
-      <div class="title">
-        <h1>Control Hub</h1>
-        <p class="sub">Ib : <strong>Anh Đức ❤️</strong></p>
-      </div>
-      <div class="mode-badge">3D Glow ✦</div>
-    </header>
+<h2>PANEL AIMLOCK NEW 🔥</h2>
 
-    <section class="controls">
-      <!-- Row: sliders -->
-      <div class="row sliders">
-        <div class="card small">
-          <label>Speed: <span id="speedVal">50</span></label>
-          <input id="speed" type="range" min="0" max="200" value="50" />
-        </div>
+<div class="box">
+  <p>Speed Hack</p>
+  <label class="switch">
+    <input type="checkbox" onclick="playSound()">
+    <span class="slider"></span>
+  </label>
+</div>
 
-        <div class="card small">
-          <label>Sensitivity: <span id="sensVal">50</span></label>
-          <input id="sensitivity" type="range" min="0" max="100" value="50" />
-        </div>
+<div class="box">
+  <p>No Recoil</p>
+  <label class="switch">
+    <input type="checkbox" onclick="playSound()">
+    <span class="slider"></span>
+  </label>
+</div>
 
-        <div class="card small">
-          <label>BUFF MÀN (0-200): <span id="buffScreenVal">100</span></label>
-          <input id="buffScreen" type="range" min="0" max="200" value="100" />
-        </div>
-      </div>
+<div class="box">
+  <p>Buff FPS</p>
+  <label class="switch">
+    <input type="checkbox" onclick="playSound()">
+    <span class="slider"></span>
+  </label>
+</div>
 
-      <!-- Functions grid -->
-      <div class="grid">
-        <!-- Each fn card has a blinking indicator .blink and a hidden swipe overlay to toggle -->
-        <div class="fn card" data-key="speedBoost">
-          <div class="fn-top">
-            <div class="blink" aria-hidden="true"></div>
-            <h3>Speed</h3>
-          </div>
-          <p class="desc">Tăng tốc độ di chuyển/scan (UI giả lập).</p>
-          <div class="fn-actions">
-            <button class="toggle">OFF</button>
-            <div class="swipe-hint">Vuốt ⟵ / ⟶ để bật/tắt</div>
-          </div>
-        </div>
+<div class="box">
+  <p>Nhẹ Tâm V1</p>
+  <label class="switch">
+    <input type="checkbox" onclick="playSound()">
+    <span class="slider"></span>
+  </label>
+</div>
 
-        <div class="fn card" data-key="norecoil">
-          <div class="fn-top"><div class="blink"></div><h3>NoRecoil</h3></div>
-          <p class="desc">Giảm giật (mô phỏng).</p>
-          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
-        </div>
+<audio id="clickSound">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_49847d80e8.mp3" type="audio/mpeg">
+</audio>
 
-        <div class="fn card" data-key="aimhead">
-          <div class="fn-top"><div class="blink"></div><h3>AimHead</h3></div>
-          <p class="desc">Hỗ trợ ngắm đầu (mô phỏng).</p>
-          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
-        </div>
+<script>
+function playSound(){
+   document.getElementById("clickSound").play();
+}
+</script>
 
-        <div class="fn card" data-key="headlock">
-          <div class="fn-top"><div class="blink"></div><h3>Headlock</h3></div>
-          <p class="desc">Khóa tâm vào đầu (mô phỏng).</p>
-          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
-        </div>
-
-        <div class="fn card" data-key="sensitivity">
-          <div class="fn-top"><div class="blink"></div><h3>Sensitivity</h3></div>
-          <p class="desc">Tinh chỉnh độ nhạy.</p>
-          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
-        </div>
-
-        <div class="fn card" data-key="buffGame">
-          <div class="fn-top"><div class="blink"></div><h3>Buff Game</h3></div>
-          <p class="desc">Tối ưu hiệu năng game.</p>
-          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
-        </div>
-
-        <div class="fn card" data-key="increaseFPS">
-          <div class="fn-top"><div class="blink"></div><h3>Tăng FPS</h3></div>
-          <p class="desc">Ổn định FPS cao hơn (mô phỏng).</p>
-          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
-        </div>
-
-        <div class="fn card" data-key="noShake">
-          <div class="fn-top"><div class="blink"></div><h3>Không rung tâm</h3></div>
-          <p class="desc">Giảm rung khi kéo tâm.</p>
-          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
-        </div>
-
-        <div class="fn card" data-key="nhaY">
-          <div class="fn-top"><div class="blink"></div><h3>Nhạy</h3></div>
-          <p class="desc">Tăng phản hồi cảm ứng/chuột.</p>
-          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
-        </div>
-
-        <div class="fn card" data-key="extra">
-          <div class="fn-top"><div class="blink"></div><h3>Extra</h3></div>
-          <p class="desc">Chức năng mở rộng / dự phòng.</p>
-          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
-        </div>
-      </div>
-
-      <!-- Bulk actions -->
-      <div class="row actions">
-        <button id="enableAll" class="btn big">Bật tất cả</button>
-        <button id="disableAll" class="btn outline big">Tắt tất cả</button>
-        <button id="toggleSwipeMode" class="btn ghost">Bật chế độ vuốt</button>
-      </div>
-
-      <div class="log" id="log">Hoạt động sẽ hiển thị ở đây...</div>
-    </section>
-
-    <footer class="panel-footer">
-      <small>© Control Hub — giao diện mô phỏng. Không can thiệp game.</small>
-    </footer>
-  </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
