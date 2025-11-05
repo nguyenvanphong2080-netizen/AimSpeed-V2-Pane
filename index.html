@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Control Hub — FF Tools</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Canvas nền 3D/particle -->
+  <canvas id="bg"></canvas>
+
+  <main class="panel">
+    <header class="panel-header">
+      <div class="title">
+        <h1>Control Hub</h1>
+        <p class="sub">Ib : <strong>Anh Đức ❤️</strong></p>
+      </div>
+      <div class="mode-badge">3D Glow ✦</div>
+    </header>
+
+    <section class="controls">
+      <!-- Row: sliders -->
+      <div class="row sliders">
+        <div class="card small">
+          <label>Speed: <span id="speedVal">50</span></label>
+          <input id="speed" type="range" min="0" max="200" value="50" />
+        </div>
+
+        <div class="card small">
+          <label>Sensitivity: <span id="sensVal">50</span></label>
+          <input id="sensitivity" type="range" min="0" max="100" value="50" />
+        </div>
+
+        <div class="card small">
+          <label>BUFF MÀN (0-200): <span id="buffScreenVal">100</span></label>
+          <input id="buffScreen" type="range" min="0" max="200" value="100" />
+        </div>
+      </div>
+
+      <!-- Functions grid -->
+      <div class="grid">
+        <!-- Each fn card has a blinking indicator .blink and a hidden swipe overlay to toggle -->
+        <div class="fn card" data-key="speedBoost">
+          <div class="fn-top">
+            <div class="blink" aria-hidden="true"></div>
+            <h3>Speed</h3>
+          </div>
+          <p class="desc">Tăng tốc độ di chuyển/scan (UI giả lập).</p>
+          <div class="fn-actions">
+            <button class="toggle">OFF</button>
+            <div class="swipe-hint">Vuốt ⟵ / ⟶ để bật/tắt</div>
+          </div>
+        </div>
+
+        <div class="fn card" data-key="norecoil">
+          <div class="fn-top"><div class="blink"></div><h3>NoRecoil</h3></div>
+          <p class="desc">Giảm giật (mô phỏng).</p>
+          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
+        </div>
+
+        <div class="fn card" data-key="aimhead">
+          <div class="fn-top"><div class="blink"></div><h3>AimHead</h3></div>
+          <p class="desc">Hỗ trợ ngắm đầu (mô phỏng).</p>
+          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
+        </div>
+
+        <div class="fn card" data-key="headlock">
+          <div class="fn-top"><div class="blink"></div><h3>Headlock</h3></div>
+          <p class="desc">Khóa tâm vào đầu (mô phỏng).</p>
+          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
+        </div>
+
+        <div class="fn card" data-key="sensitivity">
+          <div class="fn-top"><div class="blink"></div><h3>Sensitivity</h3></div>
+          <p class="desc">Tinh chỉnh độ nhạy.</p>
+          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
+        </div>
+
+        <div class="fn card" data-key="buffGame">
+          <div class="fn-top"><div class="blink"></div><h3>Buff Game</h3></div>
+          <p class="desc">Tối ưu hiệu năng game.</p>
+          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
+        </div>
+
+        <div class="fn card" data-key="increaseFPS">
+          <div class="fn-top"><div class="blink"></div><h3>Tăng FPS</h3></div>
+          <p class="desc">Ổn định FPS cao hơn (mô phỏng).</p>
+          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
+        </div>
+
+        <div class="fn card" data-key="noShake">
+          <div class="fn-top"><div class="blink"></div><h3>Không rung tâm</h3></div>
+          <p class="desc">Giảm rung khi kéo tâm.</p>
+          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
+        </div>
+
+        <div class="fn card" data-key="nhaY">
+          <div class="fn-top"><div class="blink"></div><h3>Nhạy</h3></div>
+          <p class="desc">Tăng phản hồi cảm ứng/chuột.</p>
+          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
+        </div>
+
+        <div class="fn card" data-key="extra">
+          <div class="fn-top"><div class="blink"></div><h3>Extra</h3></div>
+          <p class="desc">Chức năng mở rộng / dự phòng.</p>
+          <div class="fn-actions"><button class="toggle">OFF</button><div class="swipe-hint">Vuốt để toggle</div></div>
+        </div>
+      </div>
+
+      <!-- Bulk actions -->
+      <div class="row actions">
+        <button id="enableAll" class="btn big">Bật tất cả</button>
+        <button id="disableAll" class="btn outline big">Tắt tất cả</button>
+        <button id="toggleSwipeMode" class="btn ghost">Bật chế độ vuốt</button>
+      </div>
+
+      <div class="log" id="log">Hoạt động sẽ hiển thị ở đây...</div>
+    </section>
+
+    <footer class="panel-footer">
+      <small>© Control Hub — giao diện mô phỏng. Không can thiệp game.</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
